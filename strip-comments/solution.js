@@ -4,10 +4,14 @@ function solution(input, markers) {
     e.split("").forEach((el, index, ar) => {
       if (markers.includes(el)) {
         ar.splice(index, ar.length - index)
-        result.push('\n'+ar.join('').trim())
+        let str = i === 0? ar.join('').trim() : '\n'+ar.join('').trim()
+        result.push(str)
+        console.log(`"${str}"`)
       } 
       if (index === ar.length -1) {
-        result.push('\n'+ar.join('').trim())
+        let str = '\n'+ar.join('').trim()
+        result.push(str)
+        console.log(`"${str}"`)
       }
     });
     
