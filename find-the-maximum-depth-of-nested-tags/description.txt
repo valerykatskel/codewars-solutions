@@ -1,0 +1,40 @@
+You are given a DOM tree and have to analyze the <ul> and <ol> list tags within it. Your task is to find the maximum depth of nested <ul>/<ol> list tags. 
+A single <ul>/<ol> list is nested one level deep. Each <ul>/<ol> list inside another <ul>/<ol> list is nested one level deeper. 
+If there are no <ul> or <ol> lists at all in the DOM tree, the depth of nesting is 0.
+Note that <ul>/<ol> lists can be nested directly or indirectly; that is, a <ul> list inside a table inside an <ol> list is nested two levels deep.
+For example, given an HTML document with the following contents within the <body> tag:
+<ul>
+    <li>Item:
+        <ol>
+            <li>Point:
+                <div>
+                    <ul>
+                        <li>elem1<li>
+                    </ul>
+                </div>
+            </li>
+        </ol>
+    </li>
+    <li>elem2</li>
+</ul>
+<ul>
+    <li>simple list1</li>
+</ul>
+<ul>
+
+there is a <ul> list nested three levels deep. Namely, "elem1" is in a <ul> list which is inside an <ol> list containing "Point", while this <ol> list is inside another <ul> list containing "Item".
+Write a function:
+
+function solution();
+
+that, given a DOM tree, returns the maximum depth of nested <ul>/<ol> lists. For example, given the DOM tree of the document shown above, the function should return 3, as explained above.
+Given the following content:
+<ol>
+    <li>
+        <ol>
+            <li></li>
+        </ol>
+    </li>
+</ol>
+
+the function should return 2.
