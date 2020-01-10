@@ -1,9 +1,10 @@
-function moveZeros(arr) {
-    arr.forEach((el, index, ar) => {
+var moveZeros = function (arr) {
+    let result = []
+    let zeros = []
+    result = arr.map((el, index, ar) => {
       if (el === 0) {
-        let zero = arr.splice(index, 1)[0]
-        arr.push(zero)
-      }
-    })
-    return arr
-  }
+        zeros.push(el)
+      } else return el
+    }).filter(el => el !== undefined) 
+    return [...result, ...zeros]
+}
