@@ -9,7 +9,7 @@ function generateBC(url, separator) {
 		
 		if (index !== ar.length-1) {
 		  if (index > 1) {
-			return `<a href="/${prevParst.join('/')}/">${el.toUpperCase()}</a>`
+			return `<a href="/${prevParst.slice(0,index).join('/')}/">${el.toUpperCase()}</a>`
 		  } else {
 			return `<a href="/${el}/">${el.toUpperCase()}</a>`
 		  }
