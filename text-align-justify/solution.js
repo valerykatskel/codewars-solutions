@@ -1,31 +1,46 @@
-// IN PROGRESS
 function justify(str, len) {
 	let strAr = str.split(" ");
 	const getGaps = num => [...Array(num).keys()].map(elem => " ").join("");
+	const calcGaps = (length, count) => {
+	  let res = [];
+	  for (let i = 0; i < count; i++) {
+		if (i < count - 1) {
+		  let gapSize = Math.floor(length / (count - i));
+		  res.push(gapSize);
+		  length -= gapSize;
+		} else {
+		  res.push(length);
+		}
+	  }
+	  return res.sort((a, b) => b - a);
+	};
+  
 	const gapsWords = ar => {
 	  const totalLength = ar.reduce((sum, current) => sum + current.length, 0);
 	  let gapsLength = len - totalLength; //5
-	  const addGaps = (el, index, ar) => {
-		const cnt = ar.length - index
-		const currentGapSize = Math.round(gapsLength / cnt)
-		gapsLength -= currentGapSize
-		return (index < ar.length - 1) ? `${el}${getGaps(currentGapSize)}` : `${el}`
-	  };
+  
+	  const addGaps = (el, index, ar) =>
+		index < ar.length - 1
+		  ? `${el}${getGaps(calcGaps(gapsLength, ar.length - 1)[index])}`
+		  : `${el}`;
 	  return ar.map(addGaps).join("");
 	};
 	let tStr = "";
 	let result = [];
-	strAr.forEach((el, idx) => {
-	  if (len - tStr.length >= 0) {
-		if (len - tStr.length - 1 - el.length >= 0) {
-		  idx === 0 ? (tStr += `${el}`) : (tStr += ` ${el}`);
-		} else {
-		  result.push(tStr);
-		  tStr = el;
+  
+	strAr.forEach((el, idx, ar) => {
+		if (len - tStr.length >= 0) {
+		  if (len - tStr.length - 1 - el.length >= 0) {
+			idx === 0 ? (tStr += `${el}`) : (tStr += ` ${el}`);
+		  } else {
+			result.push(tStr);
+			tStr = el;
+		  }
+		} if (idx === ar.length - 1) {
+		   result.push(tStr);
 		}
-	  }
 	});
-	return result.map(el => gapsWords(el.split(" "))).join("\n");
+	return result.map((el, idx, resAr) => {return idx < resAr.length-1 ? gapsWords(el.split(" ")) : el}).join("\n");
   }
   
   console.log(
